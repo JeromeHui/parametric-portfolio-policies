@@ -1,8 +1,6 @@
-# ==============================================================================
 # Script Name: ppp_model_comparison_loop.R
 # Description: Comparative Rolling-Window Evaluation Across Penalty Specifications
 #              (Ridge alpha=0.0, Elastic Net alpha=0.5, Lasso alpha=1.0, Unpenalized)
-# ==============================================================================
 
 library(dplyr)
 
@@ -157,6 +155,6 @@ for (m in models_to_run) {
 # 5. Output Summary Results
 # ------------------------------------------------------------------------------
 cat("\n=========================================================\n")
-cat("📊 Out-of-Sample Performance Comparison Report\n")
+cat("Out-of-Sample Performance Comparison Report\n")
 cat("=========================================================\n")
 print(comparison_summary)
