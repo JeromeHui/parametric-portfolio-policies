@@ -5,17 +5,24 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
 ## Project Overview
-This repository contains an end-to-end quantitative research and engineering pipeline that integrates high-dimensional machine learning with empirical asset pricing. Departing from traditional two-step mean-variance optimization—which suffers from severe error-maximization—we implement a **Parametric Portfolio Policy (PPP)** framework where portfolio weights are modeled directly as a linear function of stock characteristics (Brandt, Santa-Clara, and Valkanov, 2004). 
+This repository includes an end-to-end pipeline for quantitative research and engineering. We combine high-dimensional machine learning with empirical asset pricing. Instead of following the usual two-step mean-variance optimisation which may cause large errors, we use Parametric Portfolio Policies (Brandt, Santa-Clara, and Valkanov, 2004) and model the weights of the portfolio as a linear function of the stock characteristics.
 
-To handle high-dimensional feature spaces and mitigate multicollinearity among hundreds of equity anomalies, we utilize **Elastic Net regularization** paired with a nested rolling-window cross-validation scheme. Furthermore, we construct conditional interaction terms by multiplying option-implied volatility smile slopes (`SmileSlope`) with baseline equity characteristics to capture state-dependent risk premiums.
+We use LASSO regression (Elastic Net) along with a nested rolling window cross-validation to control for the high dimensionality and multicollinearity in our hundreds of equity anomalies. We then create conditional interactions by multiplying SmileSlope (option implied volatility smile slope) with our base equity characteristics.
 
 ---
 
-## Methodology Architecture
-1. **Data Cleaning & Preprocessing**: Cross-sectional median imputation, 1%-99% Winsorization for outlier clipping, and Z-score standardization within each monthly cross-section to ensure scale invariance.
-2. **Feature Engineering**: Integration of core equity characteristics alongside state-dependent conditional interaction terms (e.g., `SmileSlope × IdioVol`).
-3. **Utility Maximization & Regularization**: Optimization via constant relative risk aversion (CRRA) logarithmic utility coupled with an Elastic Net penalty ($\alpha = 0.5$) to balance $L_1$ sparsity and $L_2$ ridge shrinkage.
-4. **Nested Rolling-Window Optimization**: A 60-month rolling training window combined with a 12-month inner validation horizon to dynamically select the optimal regularization parameter ($\lambda$) via BFGS quasi-Newton optimization.
+## Methodology
+**Data Cleaning and Preprocessing:**
+Impute missing values using the cross-sectional median, truncate extreme values by winsorizing at 1%, 99%, and normalize the data using Z score normalization on a monthly cross-sectional basis.
+
+**Feature Engineering:**
+Construct features using fundamental equity characteristics as well as interactions between variables conditional on the state (`SmileSlope × IdioVol`).
+
+**Optimization:**
+Maximize the utility function using a CRRA logarithmic utility function and Elastic Net penalty term ($\alpha = 0.5$). This penalises the number of non-zero coefficients in the model ($L_1$) and shrinks the coefficients in the model ($L_2$).
+
+**Rolling Window Optimization:**
+Use a 60 month rolling window with an internal 12 month validation period. Optimize the regularization parameter ($\lambda$) using a BFGS quasi Newton method.
 
 ---
 
@@ -32,7 +39,7 @@ To handle high-dimensional feature spaces and mitigate multicollinearity among h
 * **Key Insight**: All machine learning variants and the original parametric model achieve robust out-of-sample Sharpe ratios between **1.025 and 1.039**, substantially outperforming the equal-weight benchmark's Sharpe ratio of **0.516**.
 
 ### Top-Ranked Features & Interaction Impact
-Analysis of mean absolute coefficients ($\theta$) and selection rates across rolling windows demonstrates that option-market tail-risk pricing (`SmileSlope`) and its state-dependent interactions (`SmileSlope_x_IdioVolAHT`, `SmileSlope_x_DolVol`) play a dominant role in driving optimal portfolio weights alongside traditional anomalies like `Mom12mOffSeason`.
+The analysis of average absolute coefficients ($\theta$) and selection rates in rolling window reveals that option market tail risk variables (SmileSlope) and state-dependent interactions (SmileSlope_x_IdioVolAHT and SmileSlope_x_DolVol) play a dominant role in determining optimal weights, over traditional anomalies like Mom12mOffSeason.
 
 ---
 
