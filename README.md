@@ -5,19 +5,19 @@
 [![Status](https://img.shields.io/badge/Status-Completed-success.svg)]()
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
-##Project Overview
+Project Overview
 This repository contains an end-to-end quantitative research and engineering pipeline that integrates high-dimensional machine learning with empirical asset pricing. Departing from traditional two-step mean-variance optimization—which suffers from severe error-maximization—we implement a **Parametric Portfolio Policy (PPP)** framework where portfolio weights are modeled directly as a linear function of stock characteristics (Brandt, Santa-Clara, and Valkanov, 2004). 
 
 To handle high-dimensional feature spaces and mitigate multicollinearity among hundreds of equity anomalies, we utilize **Elastic Net regularization** paired with a nested rolling-window cross-validation scheme. Furthermore, we construct conditional interaction terms by multiplying option-implied volatility smile slopes (`SmileSlope`) with baseline equity characteristics to capture state-dependent risk premiums.
 
 
-##Methodology Architecture
+Methodology Architecture
 1. **Data Cleaning & Preprocessing**: Cross-sectional median imputation, 1%-99% Winsorization for outlier clipping, and Z-score standardization within each monthly cross-section to ensure scale invariance.
 2. **Feature Engineering**: Integration of core equity characteristics alongside state-dependent conditional interaction terms (e.g., `SmileSlope × IdioVol`).
 3. **Utility Maximization & Regularization**: Optimization via constant relative risk aversion (CRRA) logarithmic utility coupled with an Elastic Net penalty ($\alpha = 0.5$) to balance $L_1$ sparsity and $L_2$ ridge shrinkage.
 4. **Nested Rolling-Window Optimization**: A 60-month rolling training window combined with a 12-month inner validation horizon to dynamically select the optimal regularization parameter ($\lambda$) via BFGS quasi-Newton optimization.
 
-##Key Empirical Findings
+Key Empirical Findings
 
 ### Portfolio Performance
 | Model Specification | Annualized Return | Out-of-Sample Sharpe Ratio | Benchmark Annualized Return | Benchmark Sharpe Ratio |
