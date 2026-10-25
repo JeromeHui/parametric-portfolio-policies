@@ -1,8 +1,6 @@
-# ==============================================================================
 # Script Name: ppp_interaction_feature_pipeline.R
 # Description: Automated Interaction Feature Engineering & Rolling Elastic Net 
 #              Portfolio Optimization with Dynamic Sharpe Cross-Validation
-# ==============================================================================
 
 library(dplyr)
 library(glmnet)
