@@ -1,5 +1,5 @@
 # ==============================================================================
-# Script Name: 03_model_comparison_loop.R
+# Script Name: ppp_model_comparison_loop.R
 # Description: Comparative Rolling-Window Evaluation Across Penalty Specifications
 #              (Ridge alpha=0.0, Elastic Net alpha=0.5, Lasso alpha=1.0, Unpenalized)
 # ==============================================================================
