@@ -16,7 +16,7 @@ orig_feature_cols <- setdiff(names(data_sorted), c("permno", "yyyymm", "RET"))
 smile_cols <- grep("smile|slope", orig_feature_cols, value = TRUE, ignore.case = TRUE)
 
 if(length(smile_cols) == 0) {
-  cat("⚠️ Warning: No 'smile' or 'slope' keywords automatically matched. Defaulting to the first feature.\n")
+  cat("No 'smile' or 'slope' keywords automatically matched. Defaulting to the first feature.\n")
   smile_cols <- orig_feature_cols[1]
 } else {
   cat("Successfully identified Smile Slope features:", paste(smile_cols, collapse = ", "), "\n")
@@ -171,7 +171,7 @@ feature_importance <- data.frame(
   arrange(desc(Mean_Abs_Theta))
 
 cat("=========================================================\n")
-cat("🏆 Top 15 Feature Importance Ranking\n")
+cat("Top 15 Feature Importance Ranking\n")
 cat("=========================================================\n")
 print(head(feature_importance, 15))
 cat("\n")
@@ -191,7 +191,7 @@ sharpe_oos       <- ann_return_oos / ann_vol_oos
 sharpe_bench     <- ann_return_bench / ann_vol_bench
 
 cat("=========================================================\n")
-cat("📊 Strategy Performance & Sharpe Ratios\n")
+cat("Strategy Performance & Sharpe Ratios\n")
 cat("=========================================================\n")
 cat(sprintf("Expanded Feature Strategy - Ann. Return: %.2f%% | Ann. Vol: %.2f%% | Sharpe Ratio: %.3f\n", 
             ann_return_oos * 100, ann_vol_oos * 100, sharpe_oos))
