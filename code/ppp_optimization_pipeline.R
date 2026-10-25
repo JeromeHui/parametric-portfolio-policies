@@ -1,7 +1,5 @@
-# ==============================================================================
 # Script Name: ppp_optimization_pipeline.R
 # Description: Vectorized Elastic Net PPP Optimization & Rolling-Window Engine
-# ==============================================================================
 
 library(dplyr)
 
@@ -130,7 +128,7 @@ for (i in 1:num_loops) {
   ))
 }
 
-cat("Backtest and feature evaluation completed successfully!\n\n")
+cat("Backtest and feature evaluation completed\n\n")
 
 # ==============================================================================
 # Performance Reporting & Feature Importance Extraction
@@ -152,5 +150,5 @@ feature_importance <- data.frame(
 ) %>%
   arrange(desc(Mean_Absolute_Theta))
 
-cat("=== Top 10 Feature Importance Ranking (Mean Absolute Theta) ===\n")
+cat("Top 10 Feature Importance Ranking (Mean Absolute Theta) \n")
 print(head(feature_importance, 10))
