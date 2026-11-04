@@ -5,7 +5,7 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
 ## Project Overview
-This repository includes an end-to-end pipeline for quantitative research and engineering. We combine high-dimensional machine learning with empirical asset pricing. Instead of following the usual two-step mean-variance optimisation which may cause large errors, we use Parametric Portfolio Policies (Brandt, Santa-Clara, and Valkanov, 2004) and model the weights of the portfolio as a linear function of the stock characteristics.
+This repository includes an end-to-end pipeline for quantitative research and engineering. We combine high-dimensional machine learning with empirical asset pricing. Instead of following the usual two-step mean-variance optimisation which may cause large errors, we use Parametric Portfolio Policies (Brandt, Santa-Clara, and Valkanov, 2009) and model the weights of the portfolio as a linear function of the stock characteristics.
 
 We use LASSO regression (Elastic Net) along with a nested rolling window cross-validation to control for the high dimensionality and multicollinearity in our hundreds of equity anomalies. We then create conditional interactions by multiplying SmileSlope (option implied volatility smile slope) with our base equity characteristics.
 
