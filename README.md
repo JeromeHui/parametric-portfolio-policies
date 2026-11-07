@@ -31,9 +31,9 @@ Use a 60 month rolling window with an internal 12 month validation period. Optim
 ### Portfolio Performance
 | Model Specification | Annualized Return | Out-of-Sample Sharpe Ratio | Benchmark Annualized Return | Benchmark Sharpe Ratio |
 | :--- | :---: | :---: | :---: | :---: |
-| **Elastic Net ($\alpha = 0.0$)** | 28.41% | 1.025 | 10.10% | 0.516 |
+| **Ridge Regression ($\alpha = 0.0$)** | 28.41% | 1.025 | 10.10% | 0.516 |
 | **Elastic Net ($\alpha = 0.5$)** | 32.69% | 1.039 | 10.10% | 0.516 |
-| **Elastic Net ($\alpha = 1.0$)** | 41.85% | 1.026 | 10.10% | 0.516 |
+| **LASSO ($\alpha = 1.0$)** | 41.85% | 1.026 | 10.10% | 0.516 |
 | **Original PPP Model** | 44.65% | 1.034 | 10.10% | 0.516 |
 
 * **Key Insight**: All machine learning variants and the original parametric model achieve robust out-of-sample Sharpe ratios between **1.025 and 1.039**, substantially outperforming the equal-weight benchmark's Sharpe ratio of **0.516**.
